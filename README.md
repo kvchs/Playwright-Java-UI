@@ -1,4 +1,4 @@
-# Playwright TestNG Project
+# Playwright-Java-UI
 
 This project is generated from an archetype. It exists out of TestNG, Playwright, Allure and OWNER as the main dependencies.
 
@@ -44,3 +44,5 @@ This project is generated from an archetype. It exists out of TestNG, Playwright
 ## Update to the latest release version
 
 `mvn versions:update-properties`
+
+
