@@ -2,6 +2,13 @@
 
 This project is generated from an archetype. It exists out of TestNG, Playwright, Allure and OWNER as the main dependencies.
 
+## 报告生成
+先执行测试，生成结果文件
+mvn clean test
+
+再生成并打开报告
+mvn allure:report
+mvn allure:serve  # 这个会在浏览器打开报告
 
 ## Run tests
 

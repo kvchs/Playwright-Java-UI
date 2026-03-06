@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="自动化测试套件" verbose="1">
+    <listeners>
+        <!-- Allure 监听器 -->
+<!--        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>-->
+        <!-- 自定义截图监听器 -->
+        <listener class-name="org.example.common.AllureScreenshotListener"/>
+    </listeners>
+    <test name="百度搜索测试">
+        <classes>
+            <class name="org.example.testcase.BaiduTest"/>
+        </classes>
+    </test>
+</suite>

@@ -43,12 +43,12 @@
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>3.0.0-beta2</version>
         </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
-            <scope>test</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.testng</groupId>-->
+<!--            <artifactId>testng</artifactId>-->
+<!--            <version>${testng.version}</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
@@ -79,59 +79,133 @@
             <artifactId>rest-assured</artifactId>
             <version>${rest-assured.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.11.0</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
+
+    <!-- 构建配置（编译、测试、Allure报告生成） -->
     <build>
+
         <plugins>
+
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>${allure-maven.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M7</version>
                 <configuration>
-                    <systemPropertyVariables>
-                        <playwrightBrowser>${playwrightBrowser}</playwrightBrowser>
-                    </systemPropertyVariables>
-                    <includes>
-                        <include>**</include>
-                    </includes>
-                    <parallel>classes</parallel>
-                    <threadCount>4</threadCount>
-                    <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                    </argLine>
+                    <reportVersion>2.24.0</reportVersion>
+                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjweaver</artifactId>
-                        <version>${aspectj.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
+
+
+            <!-- Java编译插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>16</source>
-                    <target>16</target>
+                    <source>17</source>
+                    <target>17</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+            <!-- TestNG执行插件 -->
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-                <version>2.8.1</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M7</version>
                 <configuration>
-                    <excludes>
-                        <exclude>org.apache.commons:commons-collections4</exclude>
-                    </excludes>
+                    <!-- 指定测试套件 -->
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/testsuite.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <!-- Allure结果输出 -->
+                    <systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                        <allure.version>2.24.0</allure.version>
+                    </systemPropertyVariables>
+                    <!-- 允许插件自动创建目录（解决权限/创建失败问题） -->
+                    <forkCount>1</forkCount>
+                    <reuseForks>false</reuseForks>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                 </configuration>
             </plugin>
+            <!--            &lt;!&ndash; Playwright浏览器自动下载 &ndash;&gt;-->
+            <!--            <plugin>-->
+            <!--                <groupId>com.microsoft.playwright</groupId>-->
+            <!--                <artifactId>playwright-maven-plugin</artifactId>-->
+            <!--                <version>1.42.0</version>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <goals>-->
+            <!--                            <goal>install</goal>-->
+            <!--                        </goals>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
         </plugins>
     </build>
+
+    <!--    <build>-->
+    <!--        <plugins>-->
+    <!--            <plugin>-->
+    <!--                <groupId>io.qameta.allure</groupId>-->
+    <!--                <artifactId>allure-maven</artifactId>-->
+    <!--                <version>${allure-maven.version}</version>-->
+    <!--            </plugin>-->
+    <!--            <plugin>-->
+    <!--                <groupId>org.apache.maven.plugins</groupId>-->
+    <!--                <artifactId>maven-surefire-plugin</artifactId>-->
+    <!--                <version>3.0.0-M7</version>-->
+    <!--                <configuration>-->
+    <!--                    <systemPropertyVariables>-->
+    <!--                        <playwrightBrowser>${playwrightBrowser}</playwrightBrowser>-->
+    <!--                    </systemPropertyVariables>-->
+    <!--                    <includes>-->
+    <!--                        <include>**</include>-->
+    <!--                    </includes>-->
+    <!--                    <parallel>classes</parallel>-->
+    <!--                    <threadCount>4</threadCount>-->
+    <!--                    <argLine>-->
+    <!--                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"-->
+    <!--                    </argLine>-->
+    <!--                </configuration>-->
+    <!--                <dependencies>-->
+    <!--                    <dependency>-->
+    <!--                        <groupId>org.aspectj</groupId>-->
+    <!--                        <artifactId>aspectjweaver</artifactId>-->
+    <!--                        <version>${aspectj.version}</version>-->
+    <!--                    </dependency>-->
+    <!--                </dependencies>-->
+    <!--            </plugin>-->
+    <!--            <plugin>-->
+    <!--                <groupId>org.apache.maven.plugins</groupId>-->
+    <!--                <artifactId>maven-compiler-plugin</artifactId>-->
+    <!--                <version>${maven-compiler-plugin.version}</version>-->
+    <!--                <configuration>-->
+    <!--                    <source>16</source>-->
+    <!--                    <target>16</target>-->
+    <!--                </configuration>-->
+    <!--            </plugin>-->
+    <!--            <plugin>-->
+    <!--                <groupId>org.codehaus.mojo</groupId>-->
+    <!--                <artifactId>versions-maven-plugin</artifactId>-->
+    <!--                <version>2.8.1</version>-->
+    <!--                <configuration>-->
+    <!--                    <excludes>-->
+    <!--                        <exclude>org.apache.commons:commons-collections4</exclude>-->
+    <!--                    </excludes>-->
+    <!--                </configuration>-->
+    <!--            </plugin>-->
+    <!--        </plugins>-->
+    <!--    </build>-->
 </project>
