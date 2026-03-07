@@ -1,0 +1,17 @@
+2026-03-07 16:42:15.214 [main] INFO  org.example.page.NewBaiduPage - 初始化Playwright环境
+2026-03-07 16:42:20.602 [main] INFO  org.example.page.NewBaiduPage - 开始执行百度搜索测试用例
+2026-03-07 16:42:20.603 [main] INFO  org.example.page.NewBaiduPage - 打开百度首页
+2026-03-07 16:42:20.604 [main] INFO  org.example.api.keyword.PlayWrightKeyword - 打开URL：https://www.baidu.com
+2026-03-07 16:42:23.045 [main] DEBUG org.example.api.keyword.PlayWrightKeyword - 等待元素可见：定位类型=xpath, 定位值=//*[@class='chat-input-textarea chat-input-scroll-style']
+2026-03-07 16:42:23.046 [main] DEBUG org.example.api.keyword.PlayWrightKeyword - 定位元素：类型=xpath, 值=//*[@class='chat-input-textarea chat-input-scroll-style']
+2026-03-07 16:42:23.067 [main] INFO  org.example.page.NewBaiduPage - 百度搜索测试用例执行成功
+2026-03-07 16:42:23.129 [main] INFO  org.example.page.NewBaiduPage - 销毁Playwright环境
+2026-03-07 16:45:57.869 [main] INFO  org.example.page.NewBaiduPage - 初始化Playwright环境
+2026-03-07 16:46:03.298 [main] INFO  org.example.page.NewBaiduPage - 开始执行百度搜索测试用例
+2026-03-07 16:46:03.299 [main] INFO  org.example.page.NewBaiduPage - 打开百度首页
+2026-03-07 16:46:03.302 [main] INFO  org.example.api.keyword.PlayWrightKeyword - 打开URL：https://www.baidu.com
+2026-03-07 16:46:05.405 [main] DEBUG org.example.api.keyword.PlayWrightKeyword - 等待元素可见：定位类型=xpath, 定位值=//*[@class='chat-input-textarea chat-input-scroll-style']
+2026-03-07 16:46:05.406 [main] DEBUG org.example.api.keyword.PlayWrightKeyword - 定位元素：类型=xpath, 值=//*[@class='chat-input-textarea chat-input-scroll-style']
+2026-03-07 16:46:05.427 [main] INFO  org.example.api.keyword.PlayWrightKeyword - 截取页面截图：百度首页:https://www.baidu.com
+2026-03-07 16:46:05.523 [main] INFO  org.example.page.NewBaiduPage - 百度搜索测试用例执行成功
+2026-03-07 16:46:05.589 [main] INFO  org.example.page.NewBaiduPage - 销毁Playwright环境

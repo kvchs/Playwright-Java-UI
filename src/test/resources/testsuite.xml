@@ -9,7 +9,7 @@
     </listeners>
     <test name="百度搜索测试">
         <classes>
-            <class name="org.example.testcase.BaiduTest"/>
+            <class name="org.example.testcase.NewBaiduTest"/>
         </classes>
     </test>
 </suite>
