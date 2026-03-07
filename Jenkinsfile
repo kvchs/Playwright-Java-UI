@@ -31,10 +31,19 @@ pipeline {
             steps {
                 echo "===== 拉取代码到工作空间：${PROJECT_DIR} ====="
                 // 拉取 Git 代码（替换为你的仓库地址/分支）
-                checkout scmGit(
-                    branches: [[name: '*/main']], // 分支名：main/master 按需修改
-                    userRemoteConfigs: [[url: 'https://github.com/kvchs/Playwright-Java-UI.git']] // 你的代码仓库地址
-                )
+//                 checkout scmGit(
+//                     branches: [[name: '*/main']], // 分支名：main/master 按需修改
+//                     userRemoteConfigs: [[url: 'https://github.com/kvchs/Playwright-Java-UI.git']] // 你的代码仓库地址
+//                 )
+                    checkout scmGit(
+                        branches: [[name: '*/main']],
+                        userRemoteConfigs: [
+                            [
+                                url: 'git@github.com:kvchs/Playwright-Java-UI.git',
+                                credentialsId: 'github-ssh' // 对应 Jenkins 中配置的 SSH 凭证 ID
+                            ]
+                        ]
+                    )
             }
         }
 
