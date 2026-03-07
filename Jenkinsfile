@@ -132,7 +132,8 @@ pipeline {
         // 无论成功/失败，清理临时文件（可选）
         always {
             echo "===== 清理临时文件 ====="
-            dir(PROJECT_DIR) {
+            // 直接使用内置变量env.WORKSPACE
+            dir(env.WORKSPACE) {
                 sh 'mvn clean -q' // -q 静默清理，减少日志
             }
         }
