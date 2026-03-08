@@ -133,9 +133,10 @@ pipeline {
         always {
             echo "===== 清理临时文件 ====="
             // 直接使用内置变量env.WORKSPACE
-            dir(env.WORKSPACE) {
-                sh 'mvn clean -q' // -q 静默清理，减少日志
-            }
+//             dir(env.WORKSPACE) {
+//                 sh 'mvn clean -q' // -q 静默清理，减少日志
+//             }
+            sh "cd ${env.WORKSPACE} && mvn clean -q"
         }
     }
 }

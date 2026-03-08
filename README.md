@@ -17,11 +17,13 @@ docker exec -it jenkins bash
 # 创建 .ssh 目录
 mkdir -p /var/jenkins_home/.ssh
 # 手动添加 GitHub 主机密钥
-ssh-keyscan github.com >> /var/jenkins_home/.ssh/known_hosts
+ssh-keyscan github.com >> c
 # 赋予权限（Jenkins 运行用户）
 chmod 600 /var/jenkins_home/.ssh/known_hosts
 chown jenkins:jenkins /var/jenkins_home/.ssh/known_hosts
 
+
+ssh -T git@github.com
 
 ```
 
