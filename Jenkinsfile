@@ -7,7 +7,7 @@ pipeline {
     environment {
         // 关联 Jenkins 全局配置的工具（名称需和 Jenkins 中一致）
         JAVA_HOME = tool 'JDK 17'
-        M2_HOME = tool 'Maven 3.6.3'
+        M2_HOME = tool 'maven 3.9.11'
         ALLURE_HOME = tool 'Allure 2.30.0'
         // 拼接环境变量，确保工具可执行
         PATH = "${JAVA_HOME}/bin:${M2_HOME}/bin:${ALLURE_HOME}/bin:${env.PATH}"
